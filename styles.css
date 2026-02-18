@@ -27,33 +27,56 @@ h1, h2 {
     cursor: pointer;
 }
 
-/* Hero */
+/* Hero с видео */
 .hero {
+    position: relative;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
+    text-align: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;          /* Растягивает видео на весь экран без искажений */
+    z-index: 1;
 }
 
 .hero-overlay {
-    background: rgba(0,0,0,0.4);
-    padding: 20px;
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.45);   /* Затемнение — регулируй 0.35–0.60 */
+    padding: 40px 20px;
+    border-radius: 12px;
+    max-width: 90%;
+    backdrop-filter: blur(4px);        /* Лёгкое размытие для премиум-вида (опционально) */
 }
 
 .hero-small {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    opacity: 0.9;
 }
 
 .hero-names {
-    font-size: 3em;
-    margin: 10px 0;
+    font-size: 4em;                    /* Увеличил для видео-фона */
+    margin: 15px 0;
+    line-height: 1.1;
 }
 
 .hero-date {
-    font-size: 1.5em;
+    font-size: 2em;
+    margin-top: 20px;
 }
 
 /* Countdown */
@@ -180,12 +203,24 @@ footer {
 /* Мобильная адаптация */
 @media (max-width: 768px) {
     .hero-names {
-        font-size: 2em;
+        font-size: 2.8em;
+    }
+    .hero-date {
+        font-size: 1.6em;
+    }
+    .hero-overlay {
+        padding: 30px 15px;
     }
     .timer {
         flex-wrap: wrap;
     }
     .calendar-grid {
         max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-names {
+        font-size: 2.2em;
     }
 }
