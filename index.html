@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юлия и Андрей — Свадьба 18.04.2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Parisienne для скриптового шрифта, Roboto для текста -->
+</head>
+<body>
+    <!-- Контролы (музыка, плюс — опционально, можно удалить если не нужно) -->
+    <div class="controls">
+        <button id="confetti-btn">🎉</button> <!-- Плюс для конфетти, если добавишь JS -->
+        <button id="play-pause">▶️</button> <!-- Play/pause музыки -->
+    </div>
+
+    <!-- Hero секция -->
+    <section class="hero" style="background-image: url('images/hero-bg.jpg');">
+        <div class="hero-overlay">
+            <p class="hero-small">До скорой встречи!</p>
+            <h1 class="hero-names">с любовью,<br>Юлия и Андрей</h1>
+            <p class="hero-date">18/04/26</p>
+        </div>
+    </section>
+
+    <!-- Таймер обратного отсчёта -->
+    <section class="countdown">
+        <h2>До нашей свадьбы осталось</h2>
+        <div class="timer">
+            <div class="timer-block"><span id="days">00</span><p>Дней</p></div>
+            <div class="timer-block"><span id="hours">00</span><p>Часов</p></div>
+            <div class="timer-block"><span id="minutes">00</span><p>Минут</p></div>
+            <div class="timer-block"><span id="seconds">00</span><p>Секунд</p></div>
+        </div>
+    </section>
+
+    <!-- Календарь -->
+    <section class="calendar">
+        <h2>Свадебный countdown</h2>
+        <p>Апрель</p>
+        <div class="calendar-grid">
+            <div class="day-header">ПН</div><div class="day-header">ВТ</div><div class="day-header">СР</div>
+            <div class="day-header">ЧТ</div><div class="day-header">ПТ</div><div class="day-header red">СБ</div><div class="day-header red">ВС</div>
+            <!-- Пустые дни до 1 апреля (предполагаем апрель 2026 начинается с понедельника — проверь календарь) -->
+            <div class="day empty"></div><div class="day empty"></div>
+            <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div>
+            <div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div>
+            <div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div>
+            <div class="day highlight">18 <img src="images/ring-icon.png" alt="ring"></div><div class="day">19</div>
+            <div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div>
+            <div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div>
+        </div>
+        <p class="calendar-date">18/04/2026</p>
+    </section>
+
+    <!-- Текст приглашения с фото -->
+    <section class="invitation">
+        <h2>Дорогие гости!</h2>
+        <p>Совсем скоро состоится день нашей свадьбы, и мы будем счастливы, если Вы разделите с нами этот чудесный день!</p>
+        <div class="invitation-photo" style="background-image: url('images/cats.jpg');"></div> <!-- Арочная форма через CSS -->
+    </section>
+
+    <!-- Локация -->
+    <section class="location">
+        <h2>Локация</h2>
+        <p>Наша свадьба пройдёт в Дворе бракосочетания</p>
+        <img src="images/venue.jpg" alt="Дворец">
+        <p class="gather-time">Сбор гостей 09:30</p>
+        <a href="https://yandex.ru/maps/?text=Дворец+бракосочетания" target="_blank" class="map-btn">Как добраться</a>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <p>Любим, целуем</p>
+    </footer>
+
+    <!-- Аудио (опционально) -->
+    <audio id="background-music" loop>
+        <source src="wedding-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
