@@ -1,5 +1,6 @@
 body {
     margin: 0;
+	padding: 0;
     font-family: 'Roboto', sans-serif;
     color: #333;
     background: #f9f9f9;
@@ -9,6 +10,7 @@ body {
 h1, h2 {
     font-family: 'Parisienne', cursive;
     color: #000;
+	margin: 0;
 }
 
 .controls {
@@ -26,18 +28,35 @@ h1, h2 {
     border-radius: 50%;
     cursor: pointer;
 }
+@font-face {
+    font-family: 'Miss_Katherine-Script';               /* имя, которым будете пользоваться */
+    src: url('fonts/Miss_Katherine-Script.otf') format('opentype');
+    font-weight: 400;                        /* normal / regular */
+    font-style: normal;
+    font-display: swap;                      /* обязательно — предотвращает мигание текста */
+}
+@font-face {
+    font-family: 'Miss_Katherine_symbols-Regular';               /* имя, которым будете пользоваться */
+    src: url('fonts/Miss_Katherine_symbols-Regular.otf') format('opentype');
+    font-weight: 400;                        /* normal / regular */
+    font-style: normal;
+    font-display: swap;                      /* обязательно — предотвращает мигание текста */
+}		
+
 
 /* Hero с видео */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 90vh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
-}
+	border-radius: 10px;
+	filter: grayscale(100%) brightness(0.85);
+	}
 
 .hero-video {
     position: absolute;
@@ -48,179 +67,815 @@ h1, h2 {
     width: auto;
     height: auto;
     transform: translate(-50%, -50%);
-    object-fit: cover;          /* Растягивает видео на весь экран без искажений */
+    object-fit: cover;
     z-index: 1;
+	
+}
+
+.hero-text-right {
+    position: absolute;
+    top: 50%;
+    right: 8%;                    /* отступ справа — регулируй 5–12% */
+    transform: translateY(-50%);
+    text-align: left;             /* выравнивание влево внутри блока */
+    max-width: 45%;               /* не шире половины экрана */
+    z-index: 3;
+}
+
+.hero-text-center {
+    position: absolute;
+    top: 50%;
+    
+    transform: translateY(-50%);
+    text-align: center;             /* выравнивание влево внутри блока */
+    max-width: 45%;               /* не шире половины экрана */
+    z-index: 3;
 }
 
 .hero-overlay {
-    position: relative;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.45);   /* Затемнение — регулируй 0.35–0.60 */
-    padding: 40px 20px;
-    border-radius: 12px;
-    max-width: 90%;
-    backdrop-filter: blur(4px);        /* Лёгкое размытие для премиум-вида (опционально) */
-}
-
-.hero-small {
-    font-size: 1.3em;
-    margin-bottom: 10px;
-    opacity: 0.9;
+    position: absolute;          /* Теперь полноэкранный */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);  /* Основное затемнение — регулируй от 0.4 до 0.7 */
+    z-index: 2;                  /* Над видео, под текстом */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 .hero-names {
-    font-size: 4em;                    /* Увеличил для видео-фона */
-    margin: 15px 0;
-    line-height: 1.1;
+   font-family: 'Miss_Katherine-Script', normal;       /* или 'Cormorant SC', serif; для small caps */
+    font-weight: 300;                      /* Light — тонкий, как "100" в названии */
+    font-size: 18rem;                     /* крупный размер, как на скрине */
+    
+	line-height: 0.5;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 
+        0 0 10px rgba(255,255,255,0.9),   /* сильное белое свечение */
+        0 0 20px rgba(255,255,255,0.6),
+        3px 3px 8px rgba(0,0,0,0.8);      /* объёмная тень */
+    white-space: nowrap;                  /* не переносить слова */
 }
 
 .hero-date {
-    font-size: 2em;
-    margin-top: 20px;
+    font-family: 'Miss_Katherine-Script', normal; 
+    font-size: 15rem;
+    margin: 0;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 8px rgba(255,255,255,0.8),
+        2px 2px 6px rgba(0,0,0,0.7);
 }
 
-/* Countdown */
-.countdown {
-    padding: 50px 20px;
-    background: #e9e9e9;
+/* Дополнительно: лёгкая анимация появления (как на многих свадебных сайтах) */
+.hero-overlay > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.8s ease-out forwards;
 }
 
-.timer {
+.hero-small { animation-delay: 0.6s; }
+.hero-names { animation-delay: 1s; }
+.hero-date  { animation-delay: 1.4s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Invitation */
+.invitation {
+	min-height: 90vh;                 /* минимальная высота, чтобы не сжималась слишком, но без фикса 80vh */
+    height: auto;
+    /*padding: 80px 20px;*/
+   /*  background: #fff;*/
+	background: #f9f9f9;
+    position: relative;
+    overflow: hidden;
+	margin-bottom: 0;
+}
+
+.invitation-container {
+	min-height: 90vh;                 /* минимальная высота, чтобы не сжималась слишком, но без фикса 80vh */
+    height: auto;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+    flex-wrap: wrap; /* на мобильных текст сверху, фото снизу */
 }
 
-.timer-block {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.invitation-text {
+    flex: 1 1 55%;
+    text-align: left; /* или center, если хочешь по центру справа */
+    max-width: 500px;
+	font-family: 'Miss_Katherine-Script', normal;
+	
 }
 
-.timer-block span {
-    font-size: 2em;
-    display: block;
+
+.invitation-text h2 {
+    font-family: 'Miss_Katherine-Script', normal; /* или твой шрифт */
+    font-size: 5rem;
+    margin-bottom: 1.2em;
+    color: #333;
 }
 
-.timer-block p {
-    font-size: 0.8em;
-    margin-top: 5px;
+
+.invitation-text {
+    font-size: 8rem;
+    line-height: 0.7;
+    color: #555;
 }
+
+.invitation-text-label {
+    font-family: 'Miss_Katherine-Script', normal;
+	font-size: 12rem;
+}
+
+/* Арка + зум-анимация */
+.invitation-photo-wrapper {
+    flex: 1 1 45%;
+    max-width: 1000px;
+    aspect-ratio: 1000 / 1300; /* пропорции арки — можно изменить на 1 / 1 для круга */
+    overflow: hidden;
+    border-radius: 50% 50% 0% 0% / 40% 40% 0% 0%; /* мягкая арка снизу */
+    position: relative;
+}
+
+.invitation-photo {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 2s ease-in-out; /* плавный зум за 8 секунд */
+    animation: gentleZoom 2s infinite alternate ease-in-out;
+}
+
+@keyframes gentleZoom {
+    0%   { transform: scale(1.00); }
+    100% { transform: scale(1.20); } /* очень лёгкое приближение — от 1.05 до 1.12 */
+}
+
 
 /* Calendar */
 .calendar {
-    padding: 50px 20px;
+    
+	/*height: 90vh; */ 
+    padding: 0px 0px;
+    background: #fff;
+    text-align: center;
+}
+
+.calendar p {
+
+   
+    margin-bottom: 0.1em;
+    color: #333;
+}
+
+.month-title-label {
+	padding-top: 160px;
+	padding-bottom: 40px;
+	font-family: 'Miss_Katherine-Script', normal; 
+	line-height: 0.1;	 
+    font-size: 25rem;
+    margin: 0 0 2rem;
+    color: #555;
+}
+
+.month-title {
+	padding: 20px;
+	font-family: 'Miss_Katherine_symbols-Regular', normal; 
+	line-height: 0.5;	 
+    font-size: 6rem;
+    margin: 0 0 2rem;
+    color: #555;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    max-width: 400px;
+    gap: 18px;
+    max-width: 1100px;           /* большой размер */
     margin: 0 auto;
+    font-size: 2.4rem;           /* крупные цифры */
 }
 
 .day-header {
+	font-family: 'Miss_Katherine_symbols-Regular', normal; 
     font-weight: bold;
+    font-size: 3rem;
+    color: #777;
+    padding: 15px 0;
 }
 
-.red {
-    color: red;
+.weekend {
+    color: #c41e3a;              /* красный для выходных */
 }
 
 .day {
-    padding: 10px;
+	
+    padding: 16px 0;
+    position: relative;
+    border-radius: 12px;
+    background: #f8f8f8;
+    min-height: 60px;           /* высокие клетки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+	
+}
+
+.day.empty {
+    background: transparent;
+    border: none;
 }
 
 .highlight {
+    background: #fff0f0;
+    font-weight: bold;
+    color: #c41e3a;
     position: relative;
 }
 
-.highlight img {
-    width: 20px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
+.day-number {
+    z-index: 2;
+    position: relative;
 }
 
-.empty {
-    visibility: hidden;
+.ring-icon {
+    position: absolute;
+    top: 40%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+    width: 130px;          /* подберите размер под ваше кольцо */
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .calendar-date {
-    margin-top: 20px;
-    font-size: 1.2em;
+    font-family: 'Miss_Katherine-Script', normal; 
+	line-height: 0.1;	 
+    font-size: 20rem;
+    margin-top: 3rem;
+	margin-bottom: 10rem;	
+    color: #555;
+	padding-top: 40px;
+	padding-bottom: 40px; 	
 }
 
-/* Invitation */
-.invitation {
-    padding: 50px 20px;
-    background: #fff;
+
+/* Countdown */
+.countdown {
+    padding: 140px 20px;
+    background: #f5f5f0;
+    text-align: center;
 }
 
-.invitation-photo {
-    width: 300px;
-    height: 200px;
-    margin: 20px auto;
-    background-size: cover;
-    clip-path: ellipse(50% 40% at 50% 50%); /* Арка */
+.countdown-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
 }
+
+.countdown-title {
+    font-family: 'Miss_Katherine-Script', normal; 
+    font-size: 20rem;
+	line-height: 0.5;
+    color: #4a4a4a;
+    margin: 0 0 4.5rem;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.line {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.8rem;
+    color: #aaa;
+    font-weight: 300;
+}
+
+.line.left  { left: -90px; }
+.line.right { right: -90px; }
+
+.timer-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;                    /* большой отступ между разрядами (дни ↔ часы и т.д.) */
+    margin-bottom: 2.5rem;
+}
+
+.digit-pair {
+    display: flex;
+    gap: 6px;                     /* маленький отступ внутри пары (цифры почти касаются) */
+}
+
+.timer-block {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.78);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.timer-block span {
+    font-family: 'Cormorant', serif;
+    font-size: 4.2rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.timer-labels {
+    display: flex;
+    justify-content: center;
+    gap: 200px;                   /* отступы под подписями — больше, чем между цифрами */
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.3rem;
+    color: #666;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+
+
 
 /* Location */
 .location {
-    padding: 50px 20px;
-    background: #f0f0f0;
+    padding: 60px 20px 60px;
+    background: #f9f9f9;
+    text-align: center;
+    position: relative;
 }
 
-.location img {
-    max-width: 100%;
+.location-title {
+    font-family: 'Miss_Katherine-Script', normal;
+	line-height: 0.1;
+    font-size: 25rem;
+    margin: 0 0 0.2em;
+    color: #000;
+    letter-spacing: 2px;
+    line-height: 1;
+	margin-top: 20px;
+}
+
+.location-subtitle {
+    font-family: 'Miss_Katherine-Script', normal;
+	line-height: 0.5;
+    font-size: 10rem;
+    font-style: italic;
+    color: #444;
+    margin: 0 0 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Большое фото с аркой */
+.location-photo-wrapper {
+    max-width: 1100px;
+    margin: 0 auto 5rem;
+    overflow: hidden;
+    border-radius: 50% 50% 0 0 / 70% 70% 0 0; /* мягкая арка сверху, как на скрине */
+    box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+}
+
+.location-photo {
+    width: 100%;
     height: auto;
-    margin: 20px 0;
+    display: block;
+}
+
+/* Нижняя строка: время + кнопка */
+.gather-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 500;
+    letter-spacing: 1px;
+	margin-bottom: 60px;
 }
 
 .gather-time {
-    font-size: 1.5em;
+    white-space: nowrap;
 }
 
-.map-btn {
+.divider {
+    color: #aaa;
+    font-size: 2.4rem;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.map-button {
     display: inline-block;
-    padding: 10px 20px;
-    border: 1px solid #333;
+    padding: 12px 40px;
+    background: transparent;
+    color: #222;
+    font-size: 1.4rem;
+    font-weight: 500;
     text-decoration: none;
+    border: 1px solid #777;
+    border-radius: 2px;
+    transition: all 0.4s ease;
+}
+
+.map-button:hover {
+    color: #000;
+    border-color: #333;
+    background: rgba(0,0,0,0.03);
+    transform: translateY(-2px);
+}
+
+/* Галерея */
+.gallery {
+  
+	padding-bottom: 120px;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.gallery-text {
+    font-family: 'Miss_Katherine-Script', normal;
+	line-height: 0.5;
+    font-size: 25rem;
+	margin-top: 6rem;
+    margin-bottom: 3rem;
+    color: #222;
+}
+
+.slider-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Контейнер фото — центрируем и убираем лишний фон */
+.slider-container {
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    background: transparent;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Слайды — центрирование через flex */
+.slides {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* Стрелки */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    border-radius: 50%;
+    font-size: 2.2rem;
     color: #333;
-    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    z-index: 10;
 }
 
-/* Footer */
-footer {
-    padding: 20px;
-    background: #fff;
-    font-family: 'Parisienne', cursive;
-    font-size: 1.5em;
+.slider-arrow:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
 }
 
-/* Мобильная адаптация */
-@media (max-width: 768px) {
-    .hero-names {
-        font-size: 2.8em;
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Точки — с отступом от фото */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 32px;               /* ← основной отступ от фото (увеличь до 40–50px, если нужно больше) */
+    padding: 0;
+    background: transparent;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #c41e3a;
+    transform: scale(1.3);
+}
+
+/* ============================================= */
+/* Мобильная версия (экраны ≤ 767px)             */
+/* ============================================= */
+@media (max-width: 767px) {
+
+    body {
+        font-size: 16px;              /* базовый размер текста */
     }
+
+    /* Общие отступы секций — убираем наложения */
+    section {
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;     /* большой воздух между секциями */
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    /* Уменьшаем заголовки */
+    h1, h2 {
+        font-size: 2.8rem !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    /* Hero (начало и конец страницы) */
+    .hero {
+        height: 70vh !important;
+        min-height: 500px;
+    }
+
+    .hero-names {
+        font-size: 9.5rem !important;
+        line-height: 1 !important;
+        margin: 0.5rem 0 !important;
+    }
+
     .hero-date {
-        font-size: 1.6em;
+        font-size: 6rem !important;
     }
-    .hero-overlay {
-        padding: 30px 15px;
+
+    .hero-small {
+        font-size: 1.4rem !important;
     }
-    .timer {
-        flex-wrap: wrap;
+	.invitation {
+        padding: 60px 15px !important;
+        min-height: auto !important;
     }
+
+    .invitation-container {
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+
+    .invitation-text {
+        max-width: 100% !important;
+        text-align: center !important;
+        order: 1; /* текст сверху */
+    }
+
+    .invitation-photo-wrapper {
+        order: 2; /* фото снизу */
+        width: 100% !important;
+        max-width: 620px !important;
+        margin: 0 auto !important;
+        aspect-ratio: 100/130 !important; /* сохраняем пропорции арки */
+        overflow: hidden !important;
+        border-radius: 50% 50% 0% 0% / 40% 40% 0% 0% !important; /* арка */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+
+    }
+
+    .invitation-photo {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+        animation: gentleZoom 2s infinite alternate ease-in-out !important;
+		
+    }
+
+    /* Анимация приближения работает и на мобильных */
+    @keyframes gentleZoom {
+        0%   { transform: scale(1.00); }
+        100% { transform: scale(1.20); }
+    }
+    /* Countdown */
+    .countdown {
+        padding: 60px 15px !important;
+    }
+
+    .countdown-title {
+        font-size: 12rem !important;
+    }
+
+    .line.left, .line.right {
+        font-size: 1.8rem !important;
+        left: -35px !important;
+        right: -35px !important;
+    }
+
+    .timer-grid {
+        gap: 20px !important;
+    }
+	
+	.digit-pair {
+		display: flex;
+		gap: 2px;
+	}
+
+    .timer-block {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .timer-block span {
+        font-size: 2.8rem !important;
+    }
+
+    .timer-labels {
+        gap: 95px !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* Календарь — самое важное исправление */
+    .calendar {
+        
+		margin-top: 80px !important;        /* ← основной фикс: большой отступ сверху */
+        padding: 60px 15px 100px !important;
+        background: #fff !important;        /* чистый фон, без прозрачности */
+        min-height: auto !important;
+    }
+
+    .calendar h2 {
+        font-size: 2.8rem !important;
+		
+    }
+
+    .month-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+	.month-title-label {
+		font-size: 12rem !important;
+        margin-bottom: 1.5rem !important;
+		line-height: 0.1;	 
+	}
+
     .calendar-grid {
-        max-width: 100%;
+        gap: 10px !important;
+        font-size: 1.4rem !important;
+        max-width: 100% !important;
+    }
+
+    .day-header {
+        font-size: 1.1rem !important;
+        padding: 12px 0 !important;
+    }
+
+    .day {
+        min-height: 70px !important;
+        padding: 12px 0 !important;
+        font-size: 1.3rem !important;
+    }
+
+    .ring-svg, .ring-icon {
+        width: 60px !important;
+        height: 60px !important;
+		top: 44%;
+		left: 53%;
+    }
+
+    .calendar-date {
+        font-size: 7rem !important;
+        margin-top: 2rem !important;
+		padding-bottom: 60px !important;
+    }
+
+    /* Локация */
+    .location {
+        padding: 60px 15px 80px !important;
+        margin-top: 0 !important;
+    }
+
+    .location-title {
+        font-size: 12rem !important;
+    }
+
+    .location-subtitle {
+        font-size: 8rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .location-photo-wrapper {
+        margin: 2rem auto 3rem !important;
+        border-radius: 30% 30% 0 0 / 50% 50% 0 0 !important;
+    }
+
+    .gather-line {
+        flex-direction: column !important;
+        gap: 20px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .divider {
+        display: none !important;
+    }
+
+    .map-button {
+        padding: 14px 32px !important;
+        font-size: 1.3rem !important;
+    }
+
+
+
+    /* Gallery (слайдер) */
+    .gallery-text {
+		
+		line-height: 0.5;
+		font-size: 12rem;
+		margin-top: 6rem;
+		margin-bottom: 3rem;
+	}
+	.slider-wrapper {
+        max-width: 100% !important;
+    }
+
+    .slider-arrow {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.8rem !important;
+    }
+
+    .prev { left: 10px !important; }
+    .next { right: 10px !important; }
+
+    .slider-dots {
+        margin-top: 30px !important;
+    }
+
+    .dot {
+        width: 10px !important;
+        height: 10px !important;
     }
 }
 
-@media (max-width: 480px) {
+/* Для очень маленьких экранов (<480px) */
+@media (max-width: 479px) {
+    h1, h2 {
+        font-size: 2.2rem;
+    }
+
+    section {
+        padding: 40px 10px;
+    }
+
     .hero-names {
-        font-size: 2.2em;
+        font-size: 3.5rem;
+    }
+
+    .timer-grid {
+        gap: 8px 0;
+    }
+
+    .timer-block {
+        width: 60px;
+        height: 60px;
+    }
+
+    .timer-block span {
+        font-size: 2.5rem;
     }
 }

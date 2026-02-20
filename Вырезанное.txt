@@ -1,0 +1,65 @@
+/* Мобильные */
+@media (max-width: 768px) {
+    .slider-wrapper {
+        max-width: 100%;
+    }
+
+    .slider-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .slider-dots {
+        margin-top: 24px;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .hero-names { font-size: 3.8rem; }
+    .hero-date  { font-size: 2.2rem; }
+    .hero-small { font-size: 1.4rem; }
+	
+    .hero-overlay {
+        padding: 30px 15px;
+    }
+    .timer {
+        flex-wrap: wrap;
+    }
+    .calendar-grid {
+        gap: 12px;
+        font-size: 1.8rem;
+        max-width: 100%;
+    }
+
+    .day {
+        min-height: 80px;
+        padding: 15px 0;
+    }
+
+    .ring-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .calendar h2 {
+        font-size: 3.2rem;
+    }
+	
+}
+
+@media (max-width: 480px) {
+    .hero-names { font-size: 3rem; }
+    .hero-date  { font-size: 1.8rem; }
+}
+
+Галерея
