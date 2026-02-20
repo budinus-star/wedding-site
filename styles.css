@@ -80,6 +80,8 @@ h1, h2 {
     text-align: left;             /* выравнивание влево внутри блока */
     max-width: 45%;               /* не шире половины экрана */
     z-index: 3;
+	font-size: 8rem;                     /* крупный размер, как на скрине */
+	line-height: 0.5;
 }
 
 .hero-text-center {
@@ -90,6 +92,8 @@ h1, h2 {
     text-align: center;             /* выравнивание влево внутри блока */
     max-width: 45%;               /* не шире половины экрана */
     z-index: 3;
+	font-size: 12rem;                     /* крупный размер, как на скрине */
+	line-height: 0.8;
 }
 
 .hero-overlay {
@@ -111,9 +115,6 @@ h1, h2 {
 .hero-names {
    font-family: 'Miss_Katherine-Script', normal;       /* или 'Cormorant SC', serif; для small caps */
     font-weight: 300;                      /* Light — тонкий, как "100" в названии */
-    font-size: 18rem;                     /* крупный размер, как на скрине */
-    
-	line-height: 0.5;
     letter-spacing: 1px;
     color: #ffffff;
     text-shadow: 
@@ -125,7 +126,7 @@ h1, h2 {
 
 .hero-date {
     font-family: 'Miss_Katherine-Script', normal; 
-    font-size: 15rem;
+    font-size: 12rem;
     margin: 0;
     letter-spacing: 4px;
     text-shadow: 
@@ -627,7 +628,7 @@ h1, h2 {
 
     /* Уменьшаем заголовки */
     h1, h2 {
-        font-size: 2.8rem !important;
+        font-size: 8rem !important;
         margin-bottom: 1.2rem !important;
     }
 
@@ -637,19 +638,40 @@ h1, h2 {
         min-height: 500px;
     }
 
-    .hero-names {
-        font-size: 9.5rem !important;
-        line-height: 1 !important;
+    .hero-names {        
         margin: 0.5rem 0 !important;
     }
 
     .hero-date {
-        font-size: 6rem !important;
+        font-size: 7rem !important;
     }
+	
+	.hero-text-right {
+		font-size: 12rem !important;
+		line-height: 1 !important;
+		max-width: 65%;
+	}
 
     .hero-small {
         font-size: 1.4rem !important;
     }
+	
+	.hero-text-right {
+		font-size: 12rem !important;
+		line-height: 0.8 !important;
+		max-width: 65%;
+	}
+
+	.hero-text-center {
+		
+		top: 50%;
+		transform: translateY(-50%);
+		text-align: center;             /* выравнивание влево внутри блока */
+		max-width: 95%;               /* не шире половины экрана */
+		font-size: 6rem;
+		line-height: 1;	
+	}
+	
 	.invitation {
         padding: 60px 15px !important;
         min-height: auto !important;
@@ -708,7 +730,7 @@ h1, h2 {
     }
 
     .timer-grid {
-        gap: 20px !important;
+        gap: 7px !important;
     }
 	
 	.digit-pair {
@@ -717,8 +739,8 @@ h1, h2 {
 	}
 
     .timer-block {
-        width: 60px !important;
-        height: 60px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
 
     .timer-block span {
@@ -726,15 +748,15 @@ h1, h2 {
     }
 
     .timer-labels {
-        gap: 95px !important;
+        gap: 40px !important;
         font-size: 1.1rem !important;
     }
 
-    /* Календарь — самое важное исправление */
+    /* Календарь  */
     .calendar {
         
-		margin-top: 80px !important;        /* ← основной фикс: большой отступ сверху */
-        padding: 60px 15px 100px !important;
+		margin-top: 10 !important;        /* ← основной фикс: большой отступ сверху */
+        padding: 20px 15px 100px !important;
         background: #fff !important;        /* чистый фон, без прозрачности */
         min-height: auto !important;
     }
@@ -751,7 +773,7 @@ h1, h2 {
 	.month-title-label {
 		font-size: 12rem !important;
         margin-bottom: 1.5rem !important;
-		line-height: 0.1;	 
+		line-height: 0.5;	 
 	}
 
     .calendar-grid {
@@ -849,33 +871,5 @@ h1, h2 {
     .dot {
         width: 10px !important;
         height: 10px !important;
-    }
-}
-
-/* Для очень маленьких экранов (<480px) */
-@media (max-width: 479px) {
-    h1, h2 {
-        font-size: 2.2rem;
-    }
-
-    section {
-        padding: 40px 10px;
-    }
-
-    .hero-names {
-        font-size: 3.5rem;
-    }
-
-    .timer-grid {
-        gap: 8px 0;
-    }
-
-    .timer-block {
-        width: 60px;
-        height: 60px;
-    }
-
-    .timer-block span {
-        font-size: 2.5rem;
     }
 }
